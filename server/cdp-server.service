@@ -1,0 +1,21 @@
+[Unit]
+Description=CDP Node Server
+After=network.target
+
+[Service]
+Type=simple
+# Update these paths/users for your container
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/opt/CDP/server
+EnvironmentFile=/opt/CDP/server/.env
+ExecStart=/usr/bin/npm run start
+Restart=always
+RestartSec=5
+
+# Optional hardening
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
